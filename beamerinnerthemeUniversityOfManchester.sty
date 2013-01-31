@@ -1,0 +1,40 @@
+% (Unofficial) University of Manchester Beamer Theme
+% Based upon the official PowerPoint styling.
+% -------------------------------------------
+% Authors: <andrew.mundy@cs.man.ac.uk>
+
+\newlength{\titletolineskip}
+\pgfmathsetlength\titletolineskip{-.5*\baselineskip}
+
+\let\oldframetitle\frametitle
+\renewcommand{\frametitle}[1]{%
+	\oldframetitle{#1}\setstretch{1.2}
+}
+
+\useinnertheme{default}
+
+\defbeamertemplate*{title page}{UniversityOfManchester}
+{
+	\vskip\texttopmargin%
+	\vskip\titletolineskip%
+	\raggedright\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par%
+	\vskip\titletolineskip%
+	\begin{tikzpicture}
+		\draw [thick, dotted, \ifbeamer@dark{white}\else\ifbeamer@darktitle{white}\else{uomgrey}\fi\fi]
+			(0,0) -- (\paperwidth-1.5*\sidemargin,0);
+	\end{tikzpicture}%
+	\vfill%
+	\ifx\insertsubtitle\@empty%
+	\else%
+		{\raggedright\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+	\fi%
+	\ifx\insertauthor\@empty%
+	\else%
+		{\raggedright\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par}%
+	\fi%
+	\vfill%
+}
+
+\defbeamertemplate*{itemize item}{UniversityOfManchester}{$\bullet$}
+\defbeamertemplate*{itemize subitem}{UniversityOfManchester}{\---}
+\defbeamertemplate*{itemize subsubitem}{UniversityOfManchester}{\---}

@@ -1,0 +1,61 @@
+% (Unofficial) University of Manchester Beamer Theme
+% Based upon the official PowerPoint styling.
+% -------------------------------------------
+% Authors: <andrew.mundy@cs.man.ac.uk>
+
+\mode<presentation>
+
+%% The University of Manchester Colours
+\definecolor{uompurple}{HTML}{660099}
+\colorlet{uompurple100}{uompurple!100!white}
+\colorlet{uompurple75}{uompurple!75!white}
+\colorlet{uompurple50}{uompurple!50!white}
+\colorlet{uompurple25}{uompurple!25!white}
+\colorlet{uompurple10}{uompurple!10!white}
+\colorlet{uompurple5}{uompurple!5!white}
+
+\definecolor{uomyellow}{HTML}{FFCC33}
+\colorlet{uomyellow100}{uomyellow!100!white}
+\colorlet{uomyellow75}{uomyellow!75!white}
+\colorlet{uomyellow50}{uomyellow!50!white}
+\colorlet{uomyellow25}{uomyellow!25!white}
+\colorlet{uomyellow10}{uomyellow!10!white}
+\colorlet{uomyellow5}{uomyellow!5!white}
+
+\definecolor{uomgrey}{HTML}{999999}
+\colorlet{uomgrey100}{uomgrey!100!white}
+\colorlet{uomgrey75}{uomgrey!75!white}
+\colorlet{uomgrey50}{uomgrey!50!white}
+\colorlet{uomgrey25}{uomgrey!25!white}
+\colorlet{uomgrey10}{uomgrey!10!white}
+\colorlet{uomgrey5}{uomgrey!5!white}
+
+%% Structure Colouring
+\ifbeamer@dark%
+	\setbeamercolor{structure}{fg=white}
+	\setbeamercolor{normal text}{fg=white}
+	\setbeamercolor{frametitle}{fg=white}
+	\setbeamercolor{author}{fg=white}
+\else%
+	\setbeamercolor{structure}{fg=black!75!white}
+	\setbeamercolor{normal text}{fg=black!75!white}
+	\setbeamercolor{frametitle}{fg=black!75!white}
+	\setbeamercolor{framesubtitle}{fg=black!75!white}
+
+	\ifbeamer@darktitle%
+		\setbeamercolor{title}{fg=white}
+		\setbeamercolor*{subtitle}{fg=white}
+		\setbeamercolor*{author}{fg=white}
+	\fi
+\fi
+
+%% Block Colouring
+\setbeamercolor{block title}{use=structure, fg=white, bg=uompurple50}
+\setbeamercolor{block title alerted}{use=alerted text, fg=white, bg=uompurple}
+\setbeamercolor{block title example}{use=example text, fg=white, bg=uompurple}
+
+\setbeamercolor{block body}{fg=uompurple, use=block title, bg=uomgrey25}
+
+
+\mode
+<all>

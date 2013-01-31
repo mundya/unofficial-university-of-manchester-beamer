@@ -1,0 +1,58 @@
+% (Unofficial) University of Manchester Beamer Theme
+% Based upon the official PowerPoint styling.
+% -------------------------------------------
+% Authors: <andrew.mundy@cs.man.ac.uk>
+
+% Calculate lengths
+\newlength{\logowidth}
+\newlength{\logoheight}
+\newlength{\logopad}
+\setlength{\logowidth}{20mm}
+\pgfmathsetlength\logoheight{20/46 * \logowidth}
+\pgfmathsetlength\logopad{170/230 * \logoheight}
+
+\newlength{\sidemargin}
+\newlength{\texttopmargin}
+\pgfmathsetlength\sidemargin{\logopad + 0.5*\logowidth}
+\pgfmathsetlength\texttopmargin{2*\logopad - (230-170)/170*\logoheight + \logoheight}
+
+% Declare images
+\pgfdeclareimage[width=\logowidth]{UoMlogo-white}{TAB_allwhite}
+\pgfdeclareimage[width=\logowidth]{UoMlogo-col}{TAB_col_white_background}
+
+%% Margins
+\setbeamersize{
+	text margin left=\sidemargin,
+	text margin right=\sidemargin,
+}
+
+%% Frame title
+\defbeamertemplate*{frametitle}{UniversityOfManchester}{%
+	\vskip\texttopmargin%
+	\raggedright\insertframetitle\par%
+}
+
+%% No navigation
+\defbeamertemplate*{navigation symbols}{}
+
+%% Backgrounds
+\defbeamertemplate*{background canvas}{UniversityOfManchester}{%
+	\begin{tikzpicture}%
+		\ifthenelse{ \boolean{beamer@dark} \OR \(\boolean{beamer@darktitle} \AND \c@framenumber=1\)}%
+		{%
+			\shade [outer color=uompurple!70!black, inner color=uompurple]
+				(0,0) rectangle (\paperwidth, \paperheight);
+			\node at (\logopad,\paperheight-\logopad)
+				[anchor=north west, text width=\logowidth, text height=\logoheight] ()
+				{\pgfbox[left, bottom]{\pgfuseimage{UoMlogo-white}}}
+			;
+		}{%
+			\fill [white]
+				(0,0) rectangle (\paperwidth, \paperheight);
+			\node at (\logopad,\paperheight-\logopad)
+				[anchor=north west, text width=\logowidth, text height=\logoheight] ()
+				{\pgfbox[left, bottom]{\pgfuseimage{UoMlogo-col}}}
+			;
+		}
+	\end{tikzpicture}
+}

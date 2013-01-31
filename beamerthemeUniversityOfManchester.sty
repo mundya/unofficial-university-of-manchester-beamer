@@ -1,0 +1,51 @@
+% (Unofficial) University of Manchester Beamer Theme
+% Based upon the official PowerPoint styling.
+% -------------------------------------------
+% Authors: <andrew.mundy@cs.man.ac.uk>
+
+% With help from the UA beamer theme:
+% http://nschloe.blogspot.de/2009/04/ua-beamer-theme_15.html
+
+% Options
+\DeclareOptionBeamer{compress}{\beamer@compresstrue}
+
+\newif\ifbeamer@dark
+\beamer@darkfalse
+\DeclareOptionBeamer{dark}{\beamer@darktrue}
+
+\newif\ifbeamer@cabin
+\beamer@cabinfalse
+\DeclareOptionBeamer{cabin}{\beamer@cabintrue}
+
+\newif\ifbeamer@darktitle
+\beamer@darktitlefalse
+\DeclareOptionBeamer{darktitle}{\beamer@darktitletrue}
+
+\newif\ifbeamer@framenumber
+\beamer@framenumberfalse
+\DeclareOptionBeamer{framenumber}{\beamer@framenumbertrue}
+
+\newif\ifbeamer@totalframenumber
+\beamer@totalframenumberfalse
+\DeclareOptionBeamer{totalframenumber}{\beamer@totalframenumbertrue}
+
+\ProcessOptionsBeamer
+
+% Required Packages
+\ifbeamer@cabin
+	\RequirePackage[sfdefault]{cabin}
+	\RequirePackage[T1]{fontenc}
+\fi
+\RequirePackage{tikz}
+\RequirePackage{ifthen}
+\RequirePackage{setspace}
+
+\mode<presentation>
+
+\usecolortheme{UniversityOfManchester}
+\usefonttheme{UniversityOfManchester}
+\useoutertheme{UniversityOfManchester}
+\useinnertheme{UniversityOfManchester}
+
+\mode
+<all>
