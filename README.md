@@ -6,6 +6,8 @@ University of Manchester PowerPoint Style.
 "University of Manchester" and associated logos are copyright of the
 University of Manchester -- please see http://www.brand.manchester.ac.uk
 
+Installation
+------------
 To use the theme, ensure the following files are copied into somewhere like:
 ~/texmf/tex/latex/beamer/themes or /usr/share/texmf/...
 
@@ -19,11 +21,18 @@ To use the theme, ensure the following files are copied into somewhere like:
 
 Then run `$ texhash'.
 
+Usage
+-----
 You can then use the theme as:
+
 \documentclass[t]{beamer}
+
 \usetheme[..options..]{UniversityOfManchester}
 
-Where the options are:
+
+Options
+-------
+What the options are:
 - dark
 - darktitle
 - cabin [Replaces the default font with Cabin, much nicer!]
@@ -33,6 +42,8 @@ The following colours are defined for your use:
 - uomyellow
 - uomgrey
 
+License
+-------
 Based partially upon http://nschloe.blogspot.de/2009/04/ua-beamer-theme_15.html,
 This file may be distributed and/or modified
 1. under the LaTeX Project Public License and/or
