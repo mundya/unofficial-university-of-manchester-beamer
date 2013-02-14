@@ -17,7 +17,7 @@
 {
 	\vskip\texttopmargin%
 	\vskip\titletolineskip%
-	\raggedright\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle\par%
+	\raggedright\usebeamerfont{title}\usebeamercolor[fg]{title}\begin{minipage}[b][2\baselineskip][b]{\textwidth}\inserttitle\end{minipage}\par%
 	\vskip\titletolineskip%
 	\begin{tikzpicture}
 		\draw [thick, dotted, \ifbeamer@dark{white}\else\ifbeamer@darktitle{white}\else{uomgrey}\fi\fi]
@@ -32,7 +32,7 @@
 	\else%
 		{\raggedright\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par}%
 	\fi%
-	\vfill%
+	%\vfill%
 }
 
 \defbeamertemplate*{itemize item}{UniversityOfManchester}{$\bullet$}
