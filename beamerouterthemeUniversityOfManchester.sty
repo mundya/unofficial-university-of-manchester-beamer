@@ -28,18 +28,23 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Declare Shadings
-\pgfdeclareradialshading{UoMbg}{\pgfpoint{0}{0}}{%
-	color(0)=(uompurple);
-	color(.5\paperwidth)=(uompurple!60!black);
-	color(\paperwidth)=(uompurple!60!black)
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Declare Images
 \pgfdeclareimage[width=\logowidth]{UoMlogo-white}{TAB_allwhite}
 \pgfdeclareimage[width=\logowidth]{UoMlogo-colour}{TAB_col_white_background}
+\pgfdeclareimage[width=\logowidth]{UoMlogo-black}{TAB_black}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Declare Shadings
+{
+	\usebeamercolor{title}
+	\pgfdeclareradialshading{UoMbg}{\pgfpoint{0}{0}}{%
+		color(0)=(bg);
+		color(.5\paperwidth)=(bg!60!black);
+		color(\paperwidth)=(bg!60!black)
+	}
+}
+\pgfdeclarefading{UoMlogoFade}{\pgfuseimage{UoMlogo-black}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -67,7 +72,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Slide Title Text
 \defbeamertemplate*{frametitle}{UniversityOfManchester}{%
-	\setstretch{1.2}
 	\ifbeamer@plainframe%
 		\vskip.5\logopad
 	\else%
@@ -102,7 +106,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Title Slide
 \defbeamertemplate*{title page}{UniversityOfManchester}{%
-	\setstretch{1.2}%
 	\vskip3\logopad%
 	\usebeamerfont{title}%
 	\usebeamercolor[fg]{title}%

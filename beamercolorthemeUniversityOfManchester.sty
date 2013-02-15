@@ -5,6 +5,7 @@
 
 \mode<presentation>
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% The University of Manchester Colours
 \definecolor{uompurple}{HTML}{660099}
 \colorlet{uompurple100}{uompurple!100!white}
@@ -30,32 +31,34 @@
 \colorlet{uomgrey10}{uomgrey!10!white}
 \colorlet{uomgrey5}{uomgrey!5!white}
 
-%% Structure Colouring
-\ifbeamer@dark%
-	\setbeamercolor{structure}{fg=white}
-	\setbeamercolor{normal text}{fg=white}
-	\setbeamercolor{frametitle}{fg=white}
-	\setbeamercolor{author}{fg=white}
-\else%
-	\setbeamercolor{structure}{fg=black!75!white}
-	\setbeamercolor{normal text}{fg=black!75!white}
-	\setbeamercolor{frametitle}{fg=black!75!white}
-	\setbeamercolor{framesubtitle}{fg=black!75!white}
+\colorlet{contentgray}{black!75!white}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-	\ifbeamer@darktitle%
-		\setbeamercolor{title}{fg=white}
-		\setbeamercolor*{subtitle}{fg=white}
-		\setbeamercolor*{author}{fg=white}
-	\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Structure Colouring
+\ifbeamer@dark
+	\setbeamercolor{structure}{fg=white, bg=uompurple}
+	\setbeamercolor{normal text}{fg=white}
+\else
+	\setbeamercolor{structure}{fg=contentgray, bg=white}
+	\setbeamercolor{normal text}{fg=contentgray}
 \fi
 
+\setbeamercolor{title}{use=structure}
+
+\ifbeamer@darktitle
+	\setbeamercolor{title}{fg=white, bg=uompurple}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Block Colouring
 \setbeamercolor{block title}{use=structure, fg=white, bg=uompurple50}
 \setbeamercolor{block title alerted}{use=alerted text, fg=white, bg=uompurple}
 \setbeamercolor{block title example}{use=example text, fg=white, bg=uompurple}
 
 \setbeamercolor{block body}{fg=uompurple, use=block title, bg=uomgrey25}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \mode
 <all>
