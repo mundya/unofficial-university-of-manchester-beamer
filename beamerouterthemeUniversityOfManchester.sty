@@ -11,10 +11,22 @@
 \pgfmathsetlength\logoheight{20/46 * \logowidth}
 \pgfmathsetlength\logopad{170/230 * \logoheight}
 
+\ifbeamer@compress
+	\pgfmathsetlength\logopad{0.5 * \logopad}
+\fi
+
 \newlength{\sidemargin}
 \newlength{\texttopmargin}
 \pgfmathsetlength\sidemargin{\logopad + 0.5*\logowidth}
 \pgfmathsetlength\texttopmargin{2*\logopad - (230-170)/170*\logoheight + \logoheight}
+
+\newlength{\titletexttopmargin}
+\setlength{\titletexttopmargin}{\texttopmargin}
+
+\ifbeamer@compress
+	\pgfmathsetlength{\titletexttopmargin}{\titletexttopmargin + 2*\logopad}
+\fi
+
 
 % Declare images
 \pgfdeclareimage[width=\logowidth]{UoMlogo-white}{TAB_allwhite}
@@ -34,6 +46,22 @@
 
 %% No navigation
 \defbeamertemplate*{navigation symbols}{}
+
+%% Footline
+\defbeamertemplate*{footline}{UniversityOfManchester}{%
+	% Page Number
+	\ifbeamer@framenumber%
+		\ifnum\c@framenumber=1\else
+			\pgftext[right,bottom,at=\pgfpoint{0.98\paperwidth}{0.02\paperwidth}]{%
+				\usebeamerfont{frame number}%
+				\usebeamercolor[fg]{frame number}\insertframenumber{}%
+				\ifbeamer@totalframenumber%
+					/\inserttotalframenumber
+				\fi%
+			}
+		\fi%
+	\fi%
+}
 
 %% Backgrounds
 \defbeamertemplate*{background canvas}{UniversityOfManchester}{%
