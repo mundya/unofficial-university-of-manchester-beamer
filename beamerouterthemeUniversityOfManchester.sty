@@ -3,7 +3,8 @@
 % -------------------------------------------
 % Authors: <andrew.mundy@cs.man.ac.uk>
 
-% Calculate lengths
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Calculate lengths
 \newlength{\logowidth}
 \newlength{\logoheight}
 \newlength{\logopad}
@@ -11,80 +12,141 @@
 \pgfmathsetlength\logoheight{20/46 * \logowidth}
 \pgfmathsetlength\logopad{170/230 * \logoheight}
 
+%% Modify lengths, if compressed
 \ifbeamer@compress
-	\pgfmathsetlength\logopad{0.5 * \logopad}
+	\pgfmathsetlength{\logopad}{.5\logopad}
 \fi
 
+%% Side Margins
 \newlength{\sidemargin}
-\newlength{\texttopmargin}
 \pgfmathsetlength\sidemargin{\logopad + 0.5*\logowidth}
-\pgfmathsetlength\texttopmargin{2*\logopad - (230-170)/170*\logoheight + \logoheight}
 
-\newlength{\titletexttopmargin}
-\setlength{\titletexttopmargin}{\texttopmargin}
-
-\ifbeamer@compress
-	\pgfmathsetlength{\titletexttopmargin}{\titletexttopmargin + 2*\logopad}
-\fi
-
-
-% Declare images
-\pgfdeclareimage[width=\logowidth]{UoMlogo-white}{TAB_allwhite}
-\pgfdeclareimage[width=\logowidth]{UoMlogo-col}{TAB_col_white_background}
-
-%% Margins
 \setbeamersize{
 	text margin left=\sidemargin,
 	text margin right=\sidemargin,
-}
+}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% Frame title
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Declare Shadings
+\pgfdeclareradialshading{UoMbg}{\pgfpoint{0}{0}}{%
+	color(0)=(uompurple);
+	color(.5\paperwidth)=(uompurple!60!black);
+	color(\paperwidth)=(uompurple!60!black)
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Declare Images
+\pgfdeclareimage[width=\logowidth]{UoMlogo-white}{TAB_allwhite}
+\pgfdeclareimage[width=\logowidth]{UoMlogo-colour}{TAB_col_white_background}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Cull the navigation
+\defbeamertemplate*{navigation symbols}{UniversityOfManchester}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Headline
+\defbeamertemplate*{headline}{UniversityOfManchester}{%
+	%% Include the Logo
+	\pgftext[at=\pgfpoint{\logopad}{-\logopad}, top, left]{%
+		\ifthenelse{%
+			\boolean{beamer@dark} \OR
+			\( \boolean{beamer@darktitle} \AND \c@framenumber=1 \)
+		}{%
+			\pgfuseimage{UoMlogo-white}%
+		}{%
+			\pgfuseimage{UoMlogo-colour}%
+		}%
+	}%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Slide Title Text
 \defbeamertemplate*{frametitle}{UniversityOfManchester}{%
-	\vskip\ifbeamer@plainframe 0.5em\else\texttopmargin\fi%
-	\raggedright\insertframetitle\par%
+	\setstretch{1.2}
+	\ifbeamer@plainframe%
+		\vskip.5\logopad
+	\else%
+		\vskip3\logopad%
+		\vskip-\topsep%
+	\fi%
+	\usebeamercolor[fg]{frametitle}\usebeamerfont{frametitle}%
+		\insertframetitle\par%
+	\usebeamercolor[fg]{framesubtitle}\usebeamerfont{framesubtitle}%
+		\insertframesubtitle
 }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% No navigation
-\defbeamertemplate*{navigation symbols}{}
-
-%% Footline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Frame Numbering and Footline
 \defbeamertemplate*{footline}{UniversityOfManchester}{%
-	% Page Number
 	\ifbeamer@framenumber%
-		\ifnum\c@framenumber=1\else
-			\pgftext[right,bottom,at=\pgfpoint{0.98\paperwidth}{0.02\paperwidth}]{%
-				\usebeamerfont{frame number}%
-				\usebeamercolor[fg]{frame number}\insertframenumber{}%
+		\ifnum\c@framenumber=1\else%
+			\pgftext[base, right, at=\pgfpoint{\paperwidth-1em}{1em}]{%
+				\usebeamercolor[fg]{framenumber}%
+				\usebeamerfont{framenumber}%
+				\insertframenumber{}%
 				\ifbeamer@totalframenumber%
 					/\inserttotalframenumber
 				\fi%
 			}
-		\fi%
+		\fi
 	\fi%
 }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%% Backgrounds
-\defbeamertemplate*{background canvas}{UniversityOfManchester}{%
-	\begin{tikzpicture}%
-		\ifthenelse{ \boolean{beamer@dark} \OR \(\boolean{beamer@darktitle} \AND \c@framenumber=1\)}%
-		{%
-			\shade [outer color=uompurple!70!black, inner color=uompurple]
-				(0,0) rectangle (\paperwidth, \paperheight);
-			\ifbeamer@plainframe\else
-				\node at (\logopad,\paperheight-\logopad)
-					[anchor=north west, text width=\logowidth, text height=\logoheight] ()
-					{\pgfbox[left, bottom]{\pgfuseimage{UoMlogo-white}}}
-				;
-			\fi
-		}{%
-			\fill [white]
-				(0,0) rectangle (\paperwidth, \paperheight);
-			\ifbeamer@plainframe\else
-				\node at (\logopad,\paperheight-\logopad)
-					[anchor=north west, text width=\logowidth, text height=\logoheight] ()
-					{\pgfbox[left, bottom]{\pgfuseimage{UoMlogo-col}}}
-				;
-			\fi
-		}
-	\end{tikzpicture}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Title Slide
+\defbeamertemplate*{title page}{UniversityOfManchester}{%
+	\setstretch{1.2}%
+	\vskip3\logopad%
+	\usebeamerfont{title}%
+	\usebeamercolor[fg]{title}%
+	\begin{minipage}[b][2\baselineskip][b]{.9\textwidth}%
+		\raggedright%
+		\inserttitle%
+	\end{minipage}
+	\vskip-.5\baselineskip
+	\begin{pgfpicture}
+		\pgfsetlinewidth{2pt}
+		\pgfsetroundcap
+		\pgfsetdash{{0pt}{4pt}}{0cm}
+
+		\pgfpathmoveto{\pgfpoint{0mm}{0mm}}
+		\pgfpathlineto{\pgfpoint{.9\textwidth}{0mm}}
+
+		\pgfusepath{stroke}
+	\end{pgfpicture}
+	\vfill
+%
+	\usebeamerfont{subtitle}%
+	\begin{minipage}{.7\textwidth}
+		\raggedright%
+		\insertsubtitle%
+	\end{minipage}\vskip.25\baselineskip
+%
+	\usebeamerfont{author}%
+	\begin{minipage}{.9\textwidth}
+		\raggedright%
+		\insertauthor%
+	\end{minipage}
 }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Slide Background
+\defbeamertemplate*{background canvas}{UniversityOfManchester}{%
+	\ifthenelse{%
+		\boolean{beamer@dark} \OR
+		\( \boolean{beamer@darktitle} \AND \c@framenumber=1 \)
+	}{%
+		\pgftext[center, at=\pgfpoint{.5\paperwidth}{-.5\paperheight}]{%
+			\pgfuseshading{UoMbg}%
+		}
+	}{}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
