@@ -36,6 +36,11 @@ What the options are:
 - dark
 - darktitle
 - cabin [Replaces the default font with Cabin, much nicer!]
+- framenumber
+- totalframenumber [Only works if framenumber is also set!]
+- compress [Reduces the logo padding, this is a Bad Thing&trade;
+
+You can also use "plain" on a slide to hide the logo and gain some extra space.
 
 The following colours are defined for your use:
 - uompurple
