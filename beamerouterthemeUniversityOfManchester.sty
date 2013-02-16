@@ -104,7 +104,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Title Slide
 \defbeamertemplate*{title page}{UniversityOfManchester}{%
+	% Skip the required amount of space
 	\vskip3\logopad%
+	% Input the title
 	\usebeamerfont{title}%
 	\usebeamercolor[fg]{title}%
 	\begin{minipage}[b][2\baselineskip][b]{.9\textwidth}%
@@ -112,6 +114,7 @@
 		\inserttitle%
 	\end{minipage}
 	\vskip-.5\baselineskip
+%
 	\begin{pgfpicture}
 		\pgfsetlinewidth{2pt}
 		\pgfsetroundcap
