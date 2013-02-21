@@ -53,12 +53,13 @@ The following colours are defined for your use:
 A Fun Note
 ----------
 Older versions of Beamer require you to put
+
 	\begin{frame}
 		\frametitle{...title...}
 		% ...
 	\end{frame}
 
-Instead of the (much nicer) `\begin{frame}{...title...}` -- be aware of this!
+Instead of the (much nicer) `\begin{frame}{...title...}` - be aware of this!
 
 License
 -------
