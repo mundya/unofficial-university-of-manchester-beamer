@@ -9,17 +9,18 @@
 \newlength{\logoheight}
 \newlength{\logopad}
 \setlength{\logowidth}{20mm}
-\pgfmathsetlength\logoheight{20/46 * \logowidth}
-\pgfmathsetlength\logopad{170/230 * \logoheight}
+\setlength\logoheight{0.4347\logowidth}	% 20/46 ~= 0.4347
+\setlength\logopad{0.7391\logoheight}	% 170/230 ~= 0.7391
 
 %% Modify lengths, if compressed
 \ifbeamer@compress
-	\pgfmathsetlength{\logopad}{.5\logopad}
+	\setlength{\logopad}{.5\logopad}
 \fi
 
 %% Side Margins
 \newlength{\sidemargin}
-\pgfmathsetlength\sidemargin{\logopad + 0.5*\logowidth}
+\setlength{\sidemargin}{0.5\logowidth}
+\addtolength{\sidemargin}{\logopad}
 
 \setbeamersize{
 	text margin left=\sidemargin,
@@ -37,8 +38,8 @@
 %% Declare Shadings
 {
 	\usebeamercolor{title}
-	\pgfdeclareradialshading{UoMbg}{\pgfpoint{0}{0}}{%
-		color(0)=(bg);
+	\pgfdeclareradialshading{UoMbg}{\pgfpoint{0mm}{0mm}}{%
+		color(0mm)=(bg);
 		color(.5\paperwidth)=(bg!60!black);
 		color(\paperwidth)=(bg!60!black)
 	}
