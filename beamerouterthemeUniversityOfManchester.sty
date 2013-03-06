@@ -8,9 +8,12 @@
 \newlength{\logowidth}
 \newlength{\logoheight}
 \newlength{\logopad}
+\newlength{\footerpos}
 \setlength{\logowidth}{20mm}
 \setlength\logoheight{0.4347\logowidth}	% 20/46 ~= 0.4347
 \setlength\logopad{0.7391\logoheight}	% 170/230 ~= 0.7391
+\setlength\footerpos\paperwidth
+\addtolength\footerpos{-1em}
 
 %% Modify lengths, if compressed
 \ifbeamer@compress
@@ -89,7 +92,7 @@
 \defbeamertemplate*{footline}{UniversityOfManchester}{%
 	\ifbeamer@framenumber%
 		\ifnum\c@framenumber=1\else%
-			\pgftext[base, right, at=\pgfpoint{\paperwidth-1em}{1em}]{%
+			\pgftext[base, right, at=\pgfpoint{\footerpos}{1em}]{%
 				\usebeamercolor[fg]{framenumber}%
 				\usebeamerfont{framenumber}%
 				\insertframenumber{}%
