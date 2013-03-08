@@ -8,6 +8,9 @@ University of Manchester -- please see http://www.brand.manchester.ac.uk
 
 Installation
 ------------
+[*A beginner's introduction, and complete install guide may be found here*](http://amundy.co.uk/blog/2013/03/06/installation-guide-for-the-unofficial-university-of-manchester-beamer-theme/)
+
+
 To use the theme, ensure the following files are copied into somewhere like:
 `~/texmf/tex/latex/beamer/themes` or `/usr/share/texmf/`...
 
