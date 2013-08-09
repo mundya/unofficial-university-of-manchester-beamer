@@ -40,11 +40,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Declare Shadings
 {
-	\usebeamercolor{title}
 	\pgfdeclareradialshading{UoMbg}{\pgfpoint{0mm}{0mm}}{%
-		color(0mm)=(bg);
-		color(.5\paperwidth)=(bg!60!black);
-		color(\paperwidth)=(bg!60!black)
+		color(0mm)=(uompurple);
+		color(.5\paperwidth)=(uompurple!60!black);
+		color(\paperwidth)=(uompurple!60!black)
 	}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -61,7 +60,8 @@
 	\pgftext[at=\pgfpoint{\logopad}{-\logopad}, top, left]{%
 		\ifthenelse{%
 			\boolean{beamer@dark} \OR
-			\( \boolean{beamer@darktitle} \AND \c@framenumber=1 \)
+			\( \boolean{beamer@darktitle} \AND \c@framenumber=1 \) \OR
+			\boolean{beamer@dark}
 		}{%
 			\pgfuseimage{UoMlogo-white}%
 		}{%
@@ -150,7 +150,8 @@
 \defbeamertemplate*{background canvas}{UniversityOfManchester}{%
 	\ifthenelse{%
 		\boolean{beamer@dark} \OR
-		\( \boolean{beamer@darktitle} \AND \c@framenumber=1 \)
+		\( \boolean{beamer@darktitle} \AND \c@framenumber=1 \) \OR
+		\boolean{beamer@dark}
 	}{%
 		\pgftext[center, at=\pgfpoint{.5\paperwidth}{-.5\paperheight}]{%
 			\pgfuseshading{UoMbg}%

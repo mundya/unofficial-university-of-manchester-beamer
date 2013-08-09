@@ -41,6 +41,23 @@
 \RequirePackage{ifthen}
 \RequirePackage{pgfcore}
 
+% Additional work to allow for sections of dark frames
+\newif\ifbeamer@darkframe
+\beamer@darkframefalse
+\newenvironment{darkframes}{%
+	\beamer@darkframetrue	% Make the frame dark
+%
+	%% Set the colours for this group of frames
+	\begingroup
+	\setbeamercolor*{structure}{fg=white, bg=uompurple}
+	\setbeamercolor*{title}{fg=white, bg=uompurple}
+	\setbeamercolor*{normal text}{fg=white, bg=white}
+	\usebeamercolor*{normal text}
+}{%
+	\endgroup
+	\beamer@darkframefalse	% Undo this
+}
+
 \mode<presentation>
 
 \usecolortheme{UniversityOfManchester}
