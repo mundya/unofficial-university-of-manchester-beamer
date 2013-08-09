@@ -61,7 +61,7 @@
 		\ifthenelse{%
 			\boolean{beamer@dark} \OR
 			\( \boolean{beamer@darktitle} \AND \c@framenumber=1 \) \OR
-			\boolean{beamer@dark}
+			\boolean{beamer@darkframe}
 		}{%
 			\pgfuseimage{UoMlogo-white}%
 		}{%
@@ -151,7 +151,7 @@
 	\ifthenelse{%
 		\boolean{beamer@dark} \OR
 		\( \boolean{beamer@darktitle} \AND \c@framenumber=1 \) \OR
-		\boolean{beamer@dark}
+		\boolean{beamer@darkframe}
 	}{%
 		\pgftext[center, at=\pgfpoint{.5\paperwidth}{-.5\paperheight}]{%
 			\pgfuseshading{UoMbg}%
