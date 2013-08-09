@@ -53,6 +53,22 @@ The following colours are defined for your use:
 - `uomyellow`
 - `uomgrey`
 
+### Environments ###
+You can use the `darkframes` environment to make a enclosed frames look like the title slide (e.g. for use for presentations overviews, ask for questions, presenter information.)
+
+	\begin{darkframes}
+
+		% ...
+
+		\begin{frame}
+			\frametitle{A Dark Frame}
+			% ...
+		\end{frame}
+
+		% ...
+
+	\end{darkframes}
+
 A Fun Note
 ----------
 Older versions of Beamer require you to put
@@ -70,7 +86,3 @@ Based partially upon http://nschloe.blogspot.de/2009/04/ua-beamer-theme_15.html,
 This file may be distributed and/or modified
 1. under the LaTeX Project Public License and/or
 2. under the GNU Public License.
-
-To Do:
-------
-- Frame option to make a selected frame dark (for, e.g., overview/content slides)
