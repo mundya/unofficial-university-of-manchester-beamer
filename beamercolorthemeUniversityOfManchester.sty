@@ -35,9 +35,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Setting a primary colour
+\ifbeamer@primaryset
+	\colorlet{primary}{uomprimary}
+\else
+	\colorlet{primary}{uompurple}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Structure Colouring
 \ifbeamer@dark
-	\setbeamercolor{structure}{fg=white, bg=uompurple}
+	\setbeamercolor{structure}{fg=white, bg=primary}
 	\setbeamercolor{normal text}{fg=white}
 \else
 	\setbeamercolor{structure}{fg=contentgray, bg=white}
@@ -47,15 +56,15 @@
 \setbeamercolor{title}{use=structure}
 
 \ifbeamer@darktitle
-	\setbeamercolor{title}{fg=white, bg=uompurple}
+	\setbeamercolor{title}{fg=white, bg=primary}
 \fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Block Colouring
-\setbeamercolor{block title}{use=structure, fg=white, bg=uompurple50}
-\setbeamercolor{block title alerted}{use=alerted text, fg=white, bg=uompurple}
-\setbeamercolor{block title example}{use=example text, fg=white, bg=uompurple}
+\setbeamercolor{block title}{use=structure, fg=white, bg=primary!50!white}
+\setbeamercolor{block title alerted}{use=alerted text, fg=white, bg=primary}
+\setbeamercolor{block title example}{use=example text, fg=white, bg=primary}
 
 \setbeamercolor{block body}{fg=uompurple, use=block title, bg=uomgrey25}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

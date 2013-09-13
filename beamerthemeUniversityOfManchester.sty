@@ -29,6 +29,11 @@
 \beamer@totalframenumberfalse
 \DeclareOptionBeamer{totalframenumber}{\beamer@totalframenumbertrue}
 
+% Advanced colour options
+\newif\ifbeamer@primaryset
+\beamer@primarysetfalse
+\DeclareOptionBeamer{primary}{\beamer@primarysettrue\colorlet{uomprimary}{#1}\typeout{PRIMARY COLOUR CHANGED to #1}}
+
 \ProcessOptionsBeamer
 
 % Required Packages
