@@ -45,6 +45,7 @@ Once installed, you can use the theme as:
 - `framenumber`
 - `totalframenumber` [Only works if `framenumber` is also set!]
 - `compress` [Reduces the logo padding by half, this is a Bad Thing&trade;]
+- `primary` Set the primary colour (currently only affects the title background) (e.g. `primary=blue`)
 
 You can also use `plain` on a slide to hide the logo and gain some extra space.
 
