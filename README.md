@@ -55,7 +55,10 @@ The following colours are defined for your use:
 
 ### Environments ###
 You can use the `darkframes` environment to make a enclosed frames look like the title slide (e.g. for use for presentations overviews, ask for questions, presenter information.)
+It is recommended (i.e. you'll get an error otherwise) that you wrap any darkframes environments so that they
+only appear in presentations.
 
+	\mode<presentation>
 	\begin{darkframes}
 
 		% ...
@@ -68,6 +71,9 @@ You can use the `darkframes` environment to make a enclosed frames look like the
 		% ...
 
 	\end{darkframes}
+	\mode
+	<all>
+
 
 A Fun Note
 ----------
