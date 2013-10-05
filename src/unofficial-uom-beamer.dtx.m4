@@ -25,17 +25,16 @@
 % - See http://www.brand.manchester.ac.uk
 % 
 % \fi
-% \iffalse
-%<package>\NeedsTeXFormat{LaTeX2e}{1999/12/01}
-%<package>\ProvidesPackage{UniversityOfManchesterBeamer}
-%<package>   [2013/10/05 v2.0.0a An unofficial Beamer theme for The University of Manchester]
-%<*driver>
-\documentclass{ltxdoc}
-\EnableCrossRefs
-\CodeLineIndex
-\RecordChanges
-\begin{document}
-	\DocInput{unofficial-uom-beamer.dtx}
-\end{document}
-%</driver>
-% \fi
+define(`sty',
+`%<*$1>
+% \StopEventually{}
+include(beamer$1UniversityOfManchester.`sty')
+% \Finale
+%</$1>
+')dnl
+sty(theme)dnl
+sty(colortheme)dnl
+sty(fonttheme)dnl
+sty(innertheme)dnl
+sty(outertheme)dnl
+\endinput

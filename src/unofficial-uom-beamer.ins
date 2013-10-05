@@ -59,11 +59,13 @@ licence and remains copyright of The University of Manchester.
 
 \endpreamble
 
-\generate{\file{beamerthemeUniversityOfManchester.sty}{\from{unofficial-uom-beamer.dtx}{package}}}
-\generate{\file{beamercolorthemeUniversityOfManchester.sty}{\from{unofficial-uom-beamer.dtx}{package}}}
-\generate{\file{beamerfontthemeUniversityOfManchester.sty}{\from{unofficial-uom-beamer.dtx}{package}}}
-\generate{\file{beamerinnerthemeUniversityOfManchester.sty}{\from{unofficial-uom-beamer.dtx}{package}}}
-\generate{\file{beamerouterthemeUniversityOfManchester.sty}{\from{unofficial-uom-beamer.dtx}{package}}}
+\generate{
+		\file{beamerthemeUniversityOfManchester.sty}{\from{unofficial-uom-beamer.dtx}{theme}}
+		\file{beamercolorthemeUniversityOfManchester.sty}{\from{unofficial-uom-beamer.dtx}{colortheme}}
+		\file{beamerfontthemeUniversityOfManchester.sty}{\from{unofficial-uom-beamer.dtx}{fonttheme}}
+		\file{beamerinnerthemeUniversityOfManchester.sty}{\from{unofficial-uom-beamer.dtx}{innertheme}}
+		\file{beamerouterthemeUniversityOfManchester.sty}{\from{unofficial-uom-beamer.dtx}{outertheme}}
+}
 
 \obeyspaces
 \Msg{*****************************************************}
@@ -89,9 +91,6 @@ licence and remains copyright of The University of Manchester.
 \Msg{* If this package is being installed from a         *}
 \Msg{* repository the logo files will be retrieved and   *}
 \Msg{* installed for you automatically.                  *}
-\Msg{*                                                   *}
-\Msg{* To produce the documentation run the file         *}
-\Msg{* unofficial-uom-beamer.dtx through LaTeX.          *}
 \Msg{*                                                   *}
 \Msg{* Happy Beamering!                                  *}
 \Msg{*                                                   *}
