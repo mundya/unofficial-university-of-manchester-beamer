@@ -28,7 +28,7 @@
 define(`sty',
 `%<*$1>
 % \StopEventually{}
-include(beamer$1UniversityOfManchester.`sty')
+include(src/beamer$1UniversityOfManchester.`sty')
 % \Finale
 %</$1>
 ')dnl
