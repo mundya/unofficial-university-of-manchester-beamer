@@ -29,3 +29,26 @@
 # licence and remains copyright of The University of Manchester.
 # - See http://www.brand.manchester.ac.uk
 # 
+
+# Configuration Options
+SRCROOT=src
+BUILDROOT=build
+TOOLROOT=tools
+ABRV=unofficial-uom-beamer
+
+DTXROOT=${BUILDROOT}/dtx
+TDSROOT=${BUILDROOT}/tds
+
+ZIP=zip		# The program/string to compress with, e.g., zip or tar -cvzf
+ZIPEXT=zip	# The extension of the compressed file, e.g., zip or tar.gz
+
+# Phony targets
+.PHONY: dtx	# Generate just the dtx and ins file
+.PHONY: tds	# Generate a TeX directory structure package
+.PHONY: clean	# Remove all builds
+
+# Build a dtx version of the package
+dtx :
+	mkdir -p ${DTXROOT}/${ABRV}/					# Make the package build directory
+	cp ${SRCROOT}/${ABRV}.ins ${DTXROOT}/${ABRV}/			# Copy over the .ins file
+	m4 ${TOOLROOT}/${ABRV}.dtx.m4 > ${DTXROOT}/${ABRV}/${ABRV}.dtx	# Generate the DTX file from the current latest stys
