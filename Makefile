@@ -52,3 +52,8 @@ dtx :
 	mkdir -p ${DTXROOT}/${ABRV}/					# Make the package build directory
 	cp ${SRCROOT}/${ABRV}.ins ${DTXROOT}/${ABRV}/			# Copy over the .ins file
 	m4 ${TOOLROOT}/${ABRV}.dtx.m4 > ${DTXROOT}/${ABRV}/${ABRV}.dtx	# Generate the DTX file from the current latest stys
+	cd ${DTXROOT} && ${ZIP} ${ABRV}.${ZIPEXT} ${ABRV}/*		# Make the archive for the DTX files
+
+# Remove all builds
+clean :
+	rm -rf ${BUILDROOT}/*
