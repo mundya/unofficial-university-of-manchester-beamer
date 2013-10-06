@@ -40,13 +40,14 @@ DTXROOT=${BUILDROOT}/dtx
 TDSROOT=${BUILDROOT}/tds
 TDSPATH=tex/latex/beamer/themes/unofficial-university-of-manchester
 
-ZIP=zip		# The program/string to compress with, e.g., zip or tar -cvzf
+ZIP=zip	-r	# The program/string to compress with, e.g., zip or tar -cvzf
 ZIPEXT=zip	# The extension of the compressed file, e.g., zip or tar.gz
 
 # Phony targets
-.PHONY: dtx	# Generate just the dtx and ins file
-.PHONY: tds	# Generate a TeX directory structure package
-.PHONY: clean	# Remove all builds
+.PHONY: dtx		# Generate just the dtx and ins file
+.PHONY: tds		# Generate a TeX directory structure package
+.PHONY: tds-extra	# Generate a TeX directory structure package WITH optional extras included
+.PHONY: clean		# Remove all builds
 
 # Build a dtx version of the package
 dtx :
@@ -60,9 +61,29 @@ dtx :
 # Build a TDS version of the package
 tds : dtx
 	mkdir -p ${TDSROOT}/${ABRV}/${TDSPATH}/						# Make the TDS
-	cp ${DTXROOT}/${ABRV}/{${ABRV}.*} ${TDSROOT}/${ABRV}/${TDSPATH}/		# Copy over files from the DTX install
+	cp ${DTXROOT}/${ABRV}/${ABRV}.* ${TDSROOT}/${ABRV}/${TDSPATH}/			# Copy over files from the DTX install
+	cp ${SRCROOT}/Makefile.tds ${TDSROOT}/${ABRV}/					# Copy over the Makefile
+	cat ${SRCROOT}/README.{head,tds,tail} > ${TDSROOT}/${ABRV}/README		# Make the README and copy over
 	cd ${TDSROOT}/${ABRV}/${TDSPATH}/ && tex ${ABRV}.ins && rm *.{ins,dtx,log}	# Expand the DTX, remove the DTX and INS
 	cd ${TDSROOT} && ${ZIP} ${ABRV}-tds.${ZIPEXT} ${ABRV}/*				# Make the archive for the TDS files
+
+# As above, but include extra packages from CTAN
+tds-extra : tds
+	mkdir -p ${TDSROOT}-extra/${ABRV}					# Make the package directory
+	cp -r ${TDSROOT}/* ${TDSROOT}-extra/					# Copy over everything from the TDS build
+	# Download all sources
+	curl -L http://www.ctan.org/tex-archive/macros/latex/contrib/oberdiek/ifluatex.dtx > /tmp/ifluatex.dtx
+	curl -L http://mirrors.ctan.org/macros/latex/contrib/fontaxes/fontaxes.dtx > /tmp/fontaxes.dtx
+	curl -L http://mirrors.ctan.org/macros/latex/contrib/fontaxes/fontaxes.ins > /tmp/fontaxes.ins
+	curl -L http://www.ctan.org/tex-archive/install/fonts/cabin.tds.zip > /tmp/cabin.tds.zip
+
+	# Build/extract and copy sources into TDS
+	cd /tmp && tex ifluatex.dtx && tex fontaxes.ins
+	cp /tmp/ifluatex.sty ${TDSROOT}-extra/${ABRV}/tex/
+	cp /tmp/fontaxes.sty ${TDSROOT}-extra/${ABRV}/tex/
+	unzip /tmp/cabin.tds.zip -d ${TDSROOT}-extra/${ABRV}/
+
+	cd ${TDSROOT}-extra && ${ZIP} ${ABRV}-tds-extra.${ZIPEXT} ${ABRV}/*	# Make the archive for the TDS files
 
 # Remove all builds
 clean :
