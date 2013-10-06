@@ -38,6 +38,7 @@ ABRV=unofficial-uom-beamer
 
 DTXROOT=${BUILDROOT}/dtx
 TDSROOT=${BUILDROOT}/tds
+TDSPATH=tex/latex/beamer/themes/unofficial-university-of-manchester
 
 ZIP=zip		# The program/string to compress with, e.g., zip or tar -cvzf
 ZIPEXT=zip	# The extension of the compressed file, e.g., zip or tar.gz
@@ -51,10 +52,17 @@ ZIPEXT=zip	# The extension of the compressed file, e.g., zip or tar.gz
 dtx :
 	mkdir -p ${DTXROOT}/${ABRV}/						# Make the package build directory
 	cp ${SRCROOT}/${ABRV}.ins ${DTXROOT}/${ABRV}/				# Copy over the .ins file
-	cp ${SRCROOT}/Makefile ${DTXROOT}/${ABRV}/Makefile.uom			# Copy over the Makefile
+	cp ${SRCROOT}/Makefile.dtx ${DTXROOT}/${ABRV}/				# Copy over the Makefile
 	cat ${SRCROOT}/README.{head,dtx,tail} > ${DTXROOT}/${ABRV}/README	# Make the README and copy over
 	m4 ${TOOLROOT}/${ABRV}.dtx.m4 > ${DTXROOT}/${ABRV}/${ABRV}.dtx		# Generate the DTX file from the current latest stys
-	cd ${DTXROOT} && ${ZIP} ${ABRV}.${ZIPEXT} ${ABRV}/*			# Make the archive for the DTX files
+	cd ${DTXROOT} && ${ZIP} ${ABRV}-dtx.${ZIPEXT} ${ABRV}/*			# Make the archive for the DTX files
+
+# Build a TDS version of the package
+tds : dtx
+	mkdir -p ${TDSROOT}/${ABRV}/${TDSPATH}/						# Make the TDS
+	cp ${DTXROOT}/${ABRV}/{${ABRV}.*} ${TDSROOT}/${ABRV}/${TDSPATH}/		# Copy over files from the DTX install
+	cd ${TDSROOT}/${ABRV}/${TDSPATH}/ && tex ${ABRV}.ins && rm *.{ins,dtx,log}	# Expand the DTX, remove the DTX and INS
+	cd ${TDSROOT} && ${ZIP} ${ABRV}-tds.${ZIPEXT} ${ABRV}/*				# Make the archive for the TDS files
 
 # Remove all builds
 clean :
