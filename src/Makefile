@@ -27,12 +27,13 @@
 # Configuration options
 COLBGEPS=Logo_download/Tab_logo/White\ for\ coloured\ background/TAB_allwhite
 WHIBGEPS=Logo_download/Tab_logo/White\ backgrounds/TAB_col_white_background
+LOGOURL=http://documents.manchester.ac.uk/display.aspx?DocID=12985
 
 # Phony targets
 .PHONY: logo	# Retrieves logos
 
 logo :
-	curl http://documents.manchester.ac.uk/display.aspx?DocID=12985 > /tmp/uom-logos.zip
+	curl ${LOGOURL} > /tmp/uom-logos.zip
 	unzip /tmp/uom-logos.zip -d /tmp/
 	epspdf /tmp/${COLBGEPS}.eps TAB_allwhite.pdf
 	epspdf /tmp/${WHIBGEPS}.eps TAB_col_white_background.pdf

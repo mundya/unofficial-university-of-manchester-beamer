@@ -1,0 +1,34 @@
+Installation
+------------
+You must first generate the .sty files by running
+	
+    tex unofficial-uom-beamer.ins
+
+This will generate several files of the form:
+
+    beamer{,color,font,inner,outer}themeUniversityOfManchester.sty
+
+These will require placing somewhere TeX searches for files, for a user-only
+install you may choose to place these somewhere like:
+
+    ~/texmf/tex/latex/beamer/themes/unofficial-university-of-manchester-beamer/
+
+For a system wide install replace ~ with the location of your TeXlive texmf
+directory (e.g. `/usr/share/texmf/`).
+
+You __MUST__ also retrieve a copy of The University of Manchester logo files:
+
+* TAB_allwhite.eps
+* TAB_col_white_background.eps
+
+Which you will need to process with `epspdf`, placing the resulting PDFs within
+the same directory as above.
+
+If your download of this package included a Makefile (Makefile.uom) you can
+retrieve the logos and format them correctly by running
+
+    make logo -f Makefile.uom
+
+The logo files can currently be downloaded from:
+
+    http://documents.manchester.ac.uk/display.aspx?DocID=12985
