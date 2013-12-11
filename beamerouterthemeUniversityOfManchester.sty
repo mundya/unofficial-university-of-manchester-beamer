@@ -91,7 +91,7 @@
 %% Frame Numbering and Footline
 \defbeamertemplate*{footline}{UniversityOfManchester}{%
 	\ifbeamer@framenumber%
-		\ifnum\c@framenumber=1\else%
+		\ifnum\c@framenumber=\beamer@titleframestart\else%
 			\pgftext[base, right, at=\pgfpoint{\footerpos}{1em}]{%
 				\usebeamercolor[fg]{framenumber}%
 				\usebeamerfont{framenumber}%
@@ -108,6 +108,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Title Slide
 \defbeamertemplate*{title page}{UniversityOfManchester}{%
+	% This is slide 0
+	\setcounter{framenumber}{\beamer@titleframestart}
 	% Skip the required amount of space
 	\vskip3\logopad%
 	% Input the title

@@ -44,6 +44,7 @@ Once installed, you can use the theme as:
 - `cabin` [Replaces the default font with Cabin, much nicer!]
 - `framenumber`
 - `totalframenumber` [Only works if `framenumber` is also set!]
+- `titleframestart` Sets the number of the title frame (e.g., `titleframestart=1` (default is 0)
 - `compress` [Reduces the logo padding by half, this is a Bad Thing&trade;]
 
 You can also use `plain` on a slide to hide the logo and gain some extra space.

@@ -29,6 +29,9 @@
 \beamer@totalframenumberfalse
 \DeclareOptionBeamer{totalframenumber}{\beamer@totalframenumbertrue}
 
+\def\beamer@titleframestart{0}
+\DeclareOptionBeamer{titleframestart}[0]{\def\beamer@titleframestart{#1}}
+
 \ProcessOptionsBeamer
 
 % Required Packages
