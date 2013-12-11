@@ -60,7 +60,7 @@
 	\pgftext[at=\pgfpoint{\logopad}{-\logopad}, top, left]{%
 		\ifthenelse{%
 			\boolean{beamer@dark} \OR
-			\( \boolean{beamer@darktitle} \AND \c@framenumber=1 \) \OR
+			\( \boolean{beamer@darktitle} \AND \c@framenumber=\beamer@titleframestart \) \OR
 			\boolean{beamer@darkframe}
 		}{%
 			\pgfuseimage{UoMlogo-white}%
@@ -152,7 +152,7 @@
 \defbeamertemplate*{background canvas}{UniversityOfManchester}{%
 	\ifthenelse{%
 		\boolean{beamer@dark} \OR
-		\( \boolean{beamer@darktitle} \AND \c@framenumber=1 \) \OR
+		\( \boolean{beamer@darktitle} \AND \c@framenumber=\beamer@titleframestart \) \OR
 		\boolean{beamer@darkframe}
 	}{%
 		\pgftext[center, at=\pgfpoint{.5\paperwidth}{-.5\paperheight}]{%
