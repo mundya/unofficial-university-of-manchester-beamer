@@ -35,8 +35,10 @@ Usage
 -----
 Once installed, you can use the theme as:
 
-	\documentclass[t]{beamer}
-	\usetheme[..options..]{UniversityOfManchester}
+~~~latex
+\documentclass[t]{beamer}
+\usetheme[..options..]{UniversityOfManchester}
+~~~
 
 ### Options
 - `dark`
@@ -59,31 +61,35 @@ You can use the `darkframes` environment to make a enclosed frames look like the
 It is recommended (i.e. you'll get an error otherwise) that you wrap any darkframes environments so that they
 only appear in presentations.
 
-	\mode<presentation>
-	\begin{darkframes}
+~~~latex
+\mode<presentation>
+\begin{darkframes}
 
+	% ...
+
+	\begin{frame}
+		\frametitle{A Dark Frame}
 		% ...
+	\end{frame}
 
-		\begin{frame}
-			\frametitle{A Dark Frame}
-			% ...
-		\end{frame}
+	% ...
 
-		% ...
-
-	\end{darkframes}
-	\mode
-	<all>
+\end{darkframes}
+\mode
+<all>
+~~~
 
 
 A Fun Note
 ----------
 Older versions of Beamer require you to put
 
-	\begin{frame}
-		\frametitle{...title...}
-		% ...
-	\end{frame}
+~~~latex
+\begin{frame}
+	\frametitle{...title...}
+	% ...
+\end{frame}
+~~~
 
 Instead of the (much nicer) `\begin{frame}{...title...}` - be aware of this!
 
