@@ -32,23 +32,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Declare Images
-\pgfdeclareimage[width=\logowidth]{UoMlogo-white}{TAB_allwhite}
-\pgfdeclareimage[width=\logowidth]{UoMlogo-colour}{TAB_col_white_background}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Declare Shadings
-{
-	\pgfdeclareradialshading{UoMbg}{\pgfpoint{0mm}{0mm}}{%
-		color(0mm)=(uompurple);
-		color(.5\paperwidth)=(uompurple!60!black);
-		color(\paperwidth)=(uompurple!60!black)
-	}
-}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Cull the navigation
 \defbeamertemplate*{navigation symbols}{UniversityOfManchester}{}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -56,19 +39,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Headline
 \defbeamertemplate*{headline}{UniversityOfManchester}{%
-	%% Include the Logo
-	\pgftext[at=\pgfpoint{\logopad}{-\logopad}, top, left]{%
-		\ifthenelse{%
-			\boolean{beamer@dark} \OR
-			\( \boolean{beamer@darktitle} \AND \c@framenumber=\beamer@titleframestart \) \OR
-			\boolean{beamer@darkframe}
-		}{%
-			\pgfuseimage{UoMlogo-white}%
-		}{%
-			\pgfuseimage{UoMlogo-colour}%
-		}%
-	}%
-}
+	\begin{tikzpicture}[overlay,remember picture]
+		\node[anchor=north west,yshift=-\logopad,xshift=\logopad]
+		at (current page.north west) {
+			\ifthenelse{%
+				\boolean{beamer@dark} \OR
+				\( \boolean{beamer@darktitle} \AND \c@framenumber=\beamer@titleframestart \) \OR
+				\boolean{beamer@darkframe}
+			}{%
+				\includegraphics[width=\logowidth]{TAB_allwhite}
+			}{%
+				\includegraphics[width=\logowidth]{TAB_col_white_background}
+			}
+		};
+	\end{tikzpicture}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -155,9 +140,11 @@
 		\( \boolean{beamer@darktitle} \AND \c@framenumber=\beamer@titleframestart \) \OR
 		\boolean{beamer@darkframe}
 	}{%
-		\pgftext[center, at=\pgfpoint{.5\paperwidth}{-.5\paperheight}]{%
-			\pgfuseshading{UoMbg}%
-		}
+		\begin{tikzpicture}
+			\path [outer color = uompurple!60!black,
+			       inner color = uompurple]
+				(0,0) rectangle (\paperwidth,\paperheight);
+		\end{tikzpicture}%
 	}{}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
