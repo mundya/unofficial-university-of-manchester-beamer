@@ -35,13 +35,16 @@
 \ProcessOptionsBeamer
 
 % Required Packages
+\RequirePackage{ifthen}
 \ifbeamer@cabin
 	\RequirePackage[sfdefault]{cabin}
-	\RequirePackage[T1]{fontenc}
+	\RequirePackage{ifxetex}
+	\RequirePackage{ifluatex}
+	\ifthenelse{\boolean{xetex}\OR\boolean{luatex}}{}{
+		\RequirePackage[T1]{fontenc}}
 	\RequirePackage{setspace}
 	\setstretch{1.2}
 \fi
-\RequirePackage{ifthen}
 \RequirePackage{pgfcore}
 
 % Additional work to allow for sections of dark frames
